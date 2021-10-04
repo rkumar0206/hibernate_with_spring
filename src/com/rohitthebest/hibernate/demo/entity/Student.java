@@ -2,6 +2,8 @@ package com.rohitthebest.hibernate.demo.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -16,6 +18,7 @@ import javax.persistence.Table;
 public class Student {
 
 	@Id		// used on primary key
+	@GeneratedValue(strategy = GenerationType.IDENTITY)  // will auto generate the id
 	@Column(name = "id") // used for defining the column name same as in database
 	private int id;
 	
