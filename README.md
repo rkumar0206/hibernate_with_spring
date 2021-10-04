@@ -214,6 +214,7 @@ starting with hibernate using spring and mysql database
 * create session factory
 * create session
 * create a student object
+* save the student object
 * start a transaction
 * commit transaction
 
