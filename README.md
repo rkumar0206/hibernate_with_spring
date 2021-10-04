@@ -274,5 +274,25 @@ starting with hibernate using spring and mysql database
 
 		}
 
+#### More about Primary key
+
+* For Auto incrementing our id we just need to annotate the id variable in our pojo class as following
+				
+		@Id                                                   // used on primary key
+		@GeneratedValue(strategy = GenerationType.IDENTITY)  // will auto generate the id
+		@Column(name = "id")                                // used for defining the column name same as in database
+		private int id;
+		
+* Generation Types
+	* GenerationType.AUTO : Pick an appropriate strategy for the particular database
+	* GenerationType.IDENTITY : Assign primary keys using database identity column
+	* GenerationType.SEQUENCE : Assgn primary keys using a database sequence
+	* GenerationType.TABLE : Assign primary keys using an underlying database table to ensure uniquness
+
+* We can also define our custom generation strategy
+	* create an implementation of org.hibernate.id.IdentifierGenerator
+	* override the method public Serializable generate(...) and add your custom implementation
+	* Note : the custom generated id must be unique for every entry, should work in high-volume and multi-threaded environment
+
 
  
