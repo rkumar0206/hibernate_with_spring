@@ -466,4 +466,76 @@ starting with hibernate using spring and mysql database
 
 		}
 
+### STEP 10 : Updating objects
+* we use session.executeUpdate() method for updating a object using a HQL
+* Below is the implmentation
+
+		package com.rohitthebest.hibernate.demo;
+
+		import org.hibernate.Session;
+		import org.hibernate.SessionFactory;
+		import org.hibernate.cfg.Configuration;
+
+		import com.rohitthebest.hibernate.demo.entity.Student;
+
+		public class UpdateStudentDemo {
+
+			public static void main(String[] args) {
+		
+				// create session factory
+				SessionFactory sessionFactory = new Configuration()
+									.configure("hibernate.cfg.xml")
+									.addAnnotatedClass(Student.class)
+									.buildSessionFactory();
+
+				// create session
+		
+				Session session = sessionFactory.getCurrentSession();
+		
+				try {
+			
+					int studentId = 1;
+			
+					session.beginTransaction();
+			
+					// retrieve student based on the id : primary key
+			
+					System.out.println("\nGetting student with id: " + studentId);
+			
+					Student myStudent = session.get(Student.class, studentId);
+			
+					System.out.println("Updating student...");
+			
+					myStudent.setFirstName("Scooby");
+			
+					// commit the transaction
+					session.getTransaction().commit();
+			
+			
+					// NEW CODE
+			
+					session = sessionFactory.getCurrentSession();
+					session.beginTransaction();
+			
+					// update email for all students or we can use where clause to update a specific object
+					System.out.println("Update email for all students");
+			
+					session.createQuery("update Student set email='foo@gmail.com'")
+							.executeUpdate();
+			
+					session.getTransaction().commit();
+			
+					System.out.println("Done");
+			
+			
+				}catch (Exception e) {
+					e.printStackTrace();
+				}finally {
+					sessionFactory.close();
+				}
+		
+			}
+
+		}
+
  
