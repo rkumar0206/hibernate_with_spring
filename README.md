@@ -467,7 +467,7 @@ starting with hibernate using spring and mysql database
 		}
 
 ### STEP 10 : Updating objects
-* we use session.executeUpdate() method for updating a object using a HQL
+* we use session.createQuery("update Student set email='foo@gmail.com' where id = 2").executeUpdate();
 * Below is the implmentation
 
 		package com.rohitthebest.hibernate.demo;
@@ -539,3 +539,65 @@ starting with hibernate using spring and mysql database
 		}
 
  
+ ### STEP 11 : Deleting object
+ 
+ * we can delete a object using session.delete(object)
+ * Or we can delete using session.createQuery(delete from Student where id = 2).executeUpdate();
+ * Below is the implmetation
+		
+		package com.rohitthebest.hibernate.demo;
+
+		import org.hibernate.Session;
+		import org.hibernate.SessionFactory;
+		import org.hibernate.cfg.Configuration;
+
+		import com.rohitthebest.hibernate.demo.entity.Student;
+
+		public class DeleteStudentDemo {
+
+			public static void main(String[] args) {
+		
+				// create session factory
+				SessionFactory sessionFactory = new Configuration()
+									.configure("hibernate.cfg.xml")
+									.addAnnotatedClass(Student.class)
+									.buildSessionFactory();
+
+				// create session
+				Session session = sessionFactory.getCurrentSession();
+		
+				try {
+			
+					int studentId = 1;
+			
+					session.beginTransaction();
+			
+					// retrieve student based on the id : primary key
+			
+					System.out.println("\nGetting student with id: " + studentId);
+			
+					Student myStudent = session.get(Student.class, studentId);
+			
+					// delete the student
+					System.out.println("Deleting student: " + myStudent);
+					session.delete(myStudent);
+		
+					// delete the student id =2
+					System.out.println("Deleting student with id =2");
+					session.createQuery("delete from Student where id =2").executeUpdate();
+			
+					// commit the transaction
+					session.getTransaction().commit();
+
+					System.out.println("Done");
+			
+				}catch (Exception e) {
+					e.printStackTrace();
+				}finally {
+					sessionFactory.close();
+				}
+		
+			}
+
+		}
+
