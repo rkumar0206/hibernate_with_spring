@@ -1,10 +1,12 @@
 package com.rohitThebest.hibernate.demo.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -33,6 +35,32 @@ public class InstructorDetail {
 	
 	@Column(name = "hobby")
 	private String hobby;
+	
+	// add new field for instructor (also add getter / setters)
+	
+	// add @OneToOne annotation
+	
+	/**
+	 * Note : we dont't need to change anything in the database to make these tables bi-directional.
+	 * 
+	 * mappedBy : It is used refer to the property by which this class object is
+	 * referred in the Instructor class.
+	 * 
+	 * CascadeType.All : It will cascade all operations done on InstructorDetail table
+	 * with Instructor table i.e. if we delete InstructorDetail object it will
+	 * also delete the Instructor object associated with it
+	 */
+	@OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL)
+	private Instructor instructor;
+	
+
+	public Instructor getInstructor() {
+		return instructor;
+	}
+
+	public void setInstructor(Instructor instructor) {
+		this.instructor = instructor;
+	}
 
 	public InstructorDetail() {}
 	
