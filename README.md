@@ -356,5 +356,5 @@ mappedBy parameter is used for defining the property name (column name) by which
                 }
 
 
-
+### For one-to-many (bi-directional) switch to https://github.com/rkumar0206/hibernate_with_spring/tree/main-4 branch
 
