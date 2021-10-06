@@ -601,3 +601,4 @@ starting with hibernate using spring and mysql database
 
 		}
 
+### For more advance hibernate switch to https://github.com/rkumar0206/hibernate_with_spring/tree/main-2 branch
