@@ -251,3 +251,5 @@ For joining two tables for one-to-one relationship using hibernate we can make u
 	
 	}
 
+### For one-to-one (bi-directional) switch to https://github.com/rkumar0206/hibernate_with_spring/tree/main-3 branch
+
