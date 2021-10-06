@@ -8,4 +8,4 @@ more advance features with hibernate
   
   * ForeignKey : It is the primary key of one table which is saved as a column in another table. And therfore the table can have one-to-one relationship.
 
-* 
+* Observe the below tables
