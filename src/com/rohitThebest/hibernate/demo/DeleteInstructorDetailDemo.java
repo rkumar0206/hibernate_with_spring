@@ -28,7 +28,7 @@ public class DeleteInstructorDetailDemo {
 		
 			
 			// get the instructor detail object
-			int id = 2;
+			int id = 3;
 			InstructorDetail instructorDetail = session.get(InstructorDetail.class, id);
 			
 			// print the instructor detail
@@ -39,12 +39,16 @@ public class DeleteInstructorDetailDemo {
 		
 			
 			// now let's delete the instructor detail
-			// Note : It will also delete the Instructor associated with the 
-			// instructor detail because of Cascade.ALL
+			// Note : It will not delete the Instructor associated with the 
+			// instructor detail because of Cascade.REMOVE is not used
 			//
 			System.out.println("Deleting instructorDetail : " + instructorDetail);
-			session.delete(instructorDetail);
 			
+			// remove the associated object reference 
+			// break bi-directional link
+			instructorDetail.getInstructor().setInstructorDetail(null);
+			
+			session.delete(instructorDetail);
 			
 			// commit transaction
 			session.getTransaction().commit();

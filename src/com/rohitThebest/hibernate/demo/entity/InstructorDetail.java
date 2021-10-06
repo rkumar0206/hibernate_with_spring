@@ -50,7 +50,11 @@ public class InstructorDetail {
 	 * with Instructor table i.e. if we delete InstructorDetail object it will
 	 * also delete the Instructor object associated with it
 	 */
-	@OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL)
+	//@OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL)
+	// changing the cascade type so as when InstructorDetail object is deleted 
+	// it does not delete the Instructor
+	@OneToOne(mappedBy = "instructorDetail", cascade = 
+		{CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
 	private Instructor instructor;
 	
 
