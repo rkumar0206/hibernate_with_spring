@@ -54,6 +54,7 @@ public class DeleteDemo {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}finally {
+			session.close();
 			sessionFactory.close();
 		}
 		

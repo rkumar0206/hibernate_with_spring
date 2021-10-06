@@ -6,7 +6,7 @@ import org.hibernate.cfg.Configuration;
 import com.rohitThebest.hibernate.demo.entity.Instructor;
 import com.rohitThebest.hibernate.demo.entity.InstructorDetail;
 
-public class CreateDemo {
+public class GetInstructorDetailDemo {
 
 	public static void main(String[] args) {
 		
@@ -22,42 +22,36 @@ public class CreateDemo {
 		
 		try {
 
-			// create the objects
-			Instructor instructor = 
-					new Instructor("Rohit", "Kumar", "rohit@best.com");
-			
-			InstructorDetail instructorDetail = 
-					new InstructorDetail(
-							"http://www.rohit.com/youtube",
-							"programming");
-					
-			// associate the objects
-			instructor.setInstructorDetail(instructorDetail);
-			
-			
+		
 			// start a transaction
 			session.beginTransaction();
+		
 			
+			// get the instructor detail object
+			int id = 2;
+			InstructorDetail instructorDetail = session.get(InstructorDetail.class, id);
 			
-			// save the instructor
-			//
-			// Note : this will also save the instructorDetails object
-			// because if CascadeType.ALL
-			System.out.println("Saving instructor: " + instructor);
-			session.save(instructor);
+			// print the instructor detail
+			System.out.println("instructor detail: " + instructorDetail);
 			
+			// print the associated instructor
+			System.out.println("the associated instructor : " + instructorDetail.getInstructor());
+		
 			// commit transaction
 			session.getTransaction().commit();
 			
-			System.out.println("Done saving");
+			System.out.println("Done");
 			
 		}catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			
-			session.close();
+			// handle connection leak issue
+			session.close();			
 			sessionFactory.close();
 		}
+		
 	}
+
 }
 
