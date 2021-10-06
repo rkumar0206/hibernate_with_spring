@@ -56,8 +56,6 @@ public class CreateDemo {
 		}finally {
 			sessionFactory.close();
 		}
-		
 	}
-
 }
 
