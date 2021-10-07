@@ -212,3 +212,24 @@
         		}
         	}
         }
+
+### Observe the output
+<img src="https://github.com/rkumar0206/hibernate_with_spring/blob/main-5/img/eager_loading.PNG" />
+
+* here when hibernate is running the query only once and fetching all the details of courses as well, without calling getter method for getCourses().
+* Therefore, it is an eager loading
+
+#### Now let's change the fetch type from eager to lazy in Instructor.java
+	// here instructor refers to instructor property in Course class
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "instructor", 
+			cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH,
+			CascadeType.REFRESH })
+	private List<Course> courses;
+
+### Now again observe the output
+<img src="https://github.com/rkumar0206/hibernate_with_spring/blob/main-5/img/lazy_loading.png" />
+
+* here we can sess that hibernate is running the query two times, one for getching the Instructor and InstructorDetail and second one for fetching the courses i.e. when getCourses() method is called.
+* Therefore, it is a lazy loading, the content is loading only when the getter method is called.
+* By default hibernate uses lazy loading, so we don't need to worry about that.
+
