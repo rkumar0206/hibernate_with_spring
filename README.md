@@ -219,7 +219,7 @@
 * here when hibernate is running the query only once and fetching all the details of courses as well, without calling getter method for getCourses().
 * Therefore, it is an eager loading
 
-#### Now let's change the fetch type from eager to lazy in Instructor.java
+#### Now let's change the fetch type from eager to lazy in __Instructor.java__
 	// here instructor refers to instructor property in Course class
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "instructor", 
 			cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH,
@@ -233,3 +233,23 @@
 * Therefore, it is a lazy loading, the content is loading only when the getter method is called.
 * By default hibernate uses lazy loading, so we don't need to worry about that.
 
+---
+
+Now let's say we close the session before calling instructor.getCourse(). What will happen? Will the code run? 
+
+			
+	// commit transaction
+	session.getTransaction().commit();
+	
+	// close the session
+	session.close();
+	
+	// since it's a lazy loading, ... this should fail because hibernate will
+	// not be able to access the session as it is closed
+	// get course for the instructor
+	System.out.println("rohitThebest : Courses: " + instructor.getCourses());
+
+	
+	System.out.println("Done saving");
+			
+* here it will throw __org.hibernate.LazyInitializationException__ as we are closing the session and then calling the instructor.getCourses() and because it is a lazy loading hibernate will try to fetch the data then and there, and will fail.
