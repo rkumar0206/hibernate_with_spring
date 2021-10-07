@@ -3,12 +3,13 @@ package com.rohitThebest.hibernate.demo;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
 import com.rohitThebest.hibernate.demo.entity.Course;
 import com.rohitThebest.hibernate.demo.entity.Instructor;
 import com.rohitThebest.hibernate.demo.entity.InstructorDetail;
 
-public class EagerLazyDemo {
+public class FetchJoinDemo {
 
 	public static void main(String[] args) {
 		
@@ -28,23 +29,25 @@ public class EagerLazyDemo {
 			// start a transaction
 			session.beginTransaction();
 
+			// option 2 using hibernate query HQL
+			
 			// get the instructor from db
 			int id = 1;
-			/**
-			 * Due to eager loading hibernate will fetch all the data in here, using
-			 * session.get(). 
-			 */
-			Instructor instructor = session.get(Instructor.class, id);
+			
+			Query<Instructor> query = session.createQuery("select i from Instructor i "
+					+ "JOIN FETCH i.courses "
+					+ "where i.id=:theInstructorId",
+					Instructor.class);
+			
+			// set parameter on query
+			query.setParameter("theInstructorId", id);
+			
+			// execute query and get the instructor
+			// Note : this will fetch all the courses as well because
+			// of the query we set up above
+			Instructor instructor = query.getSingleResult();
 			
 			System.out.println("rohitThebest : Instructor: " + instructor);
-			
-			
-			/**
-			 * Here we are calling instructor.getCourses() once before closing 
-			 * the session and then if we call this method again after closing
-			 * the session, it will not throw any exception.
-			 */
-			System.out.println("rohitThebest : Courses: " + instructor.getCourses());
 			
 			// commit transaction
 			session.getTransaction().commit();
@@ -57,7 +60,7 @@ public class EagerLazyDemo {
 			// get course for the instructor
 			System.out.println("rohitThebest : Courses: " + instructor.getCourses());
 
-			System.out.println("Done saving");
+			System.out.println("Done");
 			
 		}catch (Exception e) {
 			e.printStackTrace();
