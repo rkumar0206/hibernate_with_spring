@@ -60,7 +60,15 @@ public class QueryStudentDemo {
 			System.out.println("\n\nStudents who email address is LIKE %gmail.com");
 			displayStudents(students);
 			
-					
+			
+			List<Object[]> all = session.createQuery("select s.firstName, s.email from Student s").getResultList();
+			
+			for(Object[] p : all) {
+				
+				System.out.print(p[0]);
+				System.out.println("  " + p[1]);
+			}
+			
 			// commit transaction
 			session.getTransaction().commit();
 			
@@ -70,6 +78,7 @@ public class QueryStudentDemo {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}finally {
+			session.close();
 			sessionFactory.close();
 		}
 		
@@ -84,3 +93,24 @@ public class QueryStudentDemo {
 	}
 
 }
+
+class P {
+	
+	String firstName;
+	String email;
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	
+}
+
