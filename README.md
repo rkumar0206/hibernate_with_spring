@@ -404,3 +404,4 @@ Another option for solving the problem of loading lazy data later in the code is
 			}
 		}
 		
+### For one-to-many (uni-directional) switch to https://github.com/rkumar0206/hibernate_with_spring/tree/main-5 branch
