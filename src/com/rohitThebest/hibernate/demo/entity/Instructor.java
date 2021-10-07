@@ -49,7 +49,7 @@ public class Instructor {
 	 * Eager initialization takes more memory consumption and processing speed is slow.
 	 */
 	// here instructor refers to instructor property in Course class
-	@OneToMany(fetch = FetchType.EAGER , mappedBy = "instructor", 
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "instructor", 
 			cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH,
 			CascadeType.REFRESH })
 	private List<Course> courses;

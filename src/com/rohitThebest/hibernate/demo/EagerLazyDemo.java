@@ -38,11 +38,18 @@ public class EagerLazyDemo {
 			
 			System.out.println("rohitThebest : Instructor: " + instructor);
 			
-			// get course for the instructor
-			System.out.println("rohitThebest : Courses: " + instructor.getCourses());
 			
 			// commit transaction
 			session.getTransaction().commit();
+			
+			// close the session
+			session.close();
+			
+			// since it's a lazy loading, ... this should fail because hibernate will
+			// not be able to access the session as it is closed
+			// get course for the instructor
+			System.out.println("rohitThebest : Courses: " + instructor.getCourses());
+
 			
 			System.out.println("Done saving");
 			
