@@ -171,11 +171,11 @@
         		
         		// create session factory
         		SessionFactory sessionFactory = new Configuration()
-        											.configure("hibernate.cfg.xml")
-        											.addAnnotatedClass(Instructor.class)
-        											.addAnnotatedClass(InstructorDetail.class)
-        											.addAnnotatedClass(Course.class)
-        											.buildSessionFactory();
+        							.configure("hibernate.cfg.xml")
+        							.addAnnotatedClass(Instructor.class)
+        							.addAnnotatedClass(InstructorDetail.class)
+        							.addAnnotatedClass(Course.class)
+        							.buildSessionFactory();
         
         		// create session
         		Session session = sessionFactory.getCurrentSession();
