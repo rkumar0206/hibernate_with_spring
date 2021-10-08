@@ -372,3 +372,4 @@
         	}
         }
 
+### For __Many-to-Many__ relationship switch to https://github.com/rkumar0206/hibernate_with_spring/tree/main-7 branch
