@@ -1,6 +1,6 @@
 # hibernate_with_spring
 starting with hibernate using spring and mysql database
-Note : This repository is fully inspired by the udemy course https://www.udemy.com/course/spring-hibernate-tutorial/
+###### Note : This repository is fully inspired by the udemy course https://www.udemy.com/course/spring-hibernate-tutorial/
 
 ### STEP 1 : Setting up MySQL database
 
