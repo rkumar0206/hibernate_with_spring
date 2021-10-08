@@ -40,7 +40,7 @@
     * Here you must have observed the two parameters __joinColumns__ and __inverseJoinColumns__ and the values passed there for both Student and Course.
       * For the __Course.java__ class the first column should be the _course_id_ and the other side i.e. the inverse side should be the _student_id_. Therefore, the parameter
         __joinColumns__ in @JoinTable() is for the first column and __inverseJoinColumns__ is for other column.
-      * Similarly, for __Student.java__ class the first column is _student_id__ and the inverse colum is _course_id.
+      * Similarly, for __Student.java__ class the first column is _student_id__ and the inverse colum is _course_id_.
 
 Below are the full code implmentations :
 
