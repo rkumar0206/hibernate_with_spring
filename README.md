@@ -21,7 +21,7 @@ For joining two tables for one-to-one relationship using hibernate we can make u
 
 * @JoinColumn(name="instructor_detail") : It is used for decalring which property has to be used for joining the tables.
 * Below is the code sample :
-
+```java
       package com.rohitThebest.hibernate.demo.entity;
 
       import javax.persistence.CascadeType;
@@ -122,9 +122,14 @@ For joining two tables for one-to-one relationship using hibernate we can make u
 	
       }
       
+```
+
+
 ### CreateDemo
 
-	package com.rohitThebest.hibernate.demo;
+```java
+
+package com.rohitThebest.hibernate.demo;
 
 	import org.hibernate.Session;
 	import org.hibernate.SessionFactory;
@@ -185,8 +190,11 @@ For joining two tables for one-to-one relationship using hibernate we can make u
 		}
 	}
 
+```
 
 ### Delete Demo
+
+```java
 
 	package com.rohitThebest.hibernate.demo;
 
@@ -250,6 +258,7 @@ For joining two tables for one-to-one relationship using hibernate we can make u
 		}
 	
 	}
+```
 
 ### For one-to-one (bi-directional) switch to https://github.com/rkumar0206/hibernate_with_spring/tree/main-3 branch
 
